@@ -5,7 +5,7 @@ class Pvalidate
     const ERROR_CODE_DEFAULT = 1001;
     public static function run($params, $rules)
     {
-        if (!is_array($rules) || empty($rules)) throw new \RuntimeException('规则不能为空', self::ERROR_CODE_DEFAULT);
+        if (!is_array($rules) || empty($rules)) throw new \RuntimeException('校验规则不能为空', self::ERROR_CODE_DEFAULT);
         if (!is_array($params) || empty($params)) throw new \RuntimeException('请传递正确的参数', self::ERROR_CODE_DEFAULT);
 
         $result = [];
