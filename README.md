@@ -35,14 +35,27 @@ try {
 }
 ```
 
+## 长度校验
+```
+<?php
+
+// 注意，长度校验仅支持string类型
+$rules = [
+    'name' => [
+        'type' => 'string',
+        'required' => true,
+        'title' => '姓名',
+        'min-length' => 10, // 最小长度
+        'max-length' => 20, // 最大长度 
+    ],
+];
+
+?>
+```
+
 ## 范围校验 
 ```
 <?php 
-
-$params = [
-    'name' => 'crazymus',
-    'age' => 20
-];
 
 $rules = [
     'age' => [
@@ -54,25 +67,12 @@ $rules = [
     ],
 ];
 
-try {
-    $validateParams = Pvalidate::run($params, $rules);
-    print_r($validateParams);  // 校验后得到的数据
-} catch (\RuntimeException $e) {
-    $e->getMessage();
-}
-
 ?>
 ```
 
 ## 枚举值校验 
 ```
 <?php 
-
-$params = [
-    'name' => 'crazymus',
-    'age' => 20,
-    'sex' => 3,
-];
 
 $rules = [
     'sex' => [
@@ -83,26 +83,12 @@ $rules = [
     ],
 ];
 
-try {
-    $validateParams = Pvalidate::run($params, $rules);
-    print_r($validateParams);  // 校验后得到的数据
-} catch (\RuntimeException $e) {
-    $e->getMessage();
-}
-
 ?>
 ```
 
 ## 浮点数类型 
 ```
 <?php 
-
-$params = [
-    'name' => 'crazymus',
-    'age' => 20,
-    'sex' => 3,
-    'money' => 20.56,
-];
 
 $rules = [
     'money' => [
@@ -114,12 +100,22 @@ $rules = [
     ]
 ];
 
-try {
-    $validateParams = Pvalidate::run($params, $rules);
-    print_r($validateParams);  // 校验后得到的数据
-} catch (\RuntimeException $e) {
-    $e->getMessage();
-}
+?>
+```
+
+## 自定义错误信息 
+```
+<?php 
+
+// 自定义错误提示会覆盖默认错误提示
+$rules = [
+    'name' => [
+        'type' => 'string',
+        'required' => true,
+        'title' => '姓名',
+        'error_msg' => '姓名格式错误',
+    ],
+];
 
 ?>
 ```

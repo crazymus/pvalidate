@@ -25,22 +25,46 @@ class Pvalidate
 
             if (isset($rule['enum'])) {
                 if (!in_array($value, $rule['enum'])) {
-                    throw new \RuntimeException($rule['title'] . '参数错误', 501);
+                    $errorMsg = $rule['error_msg'] ?? '请传递正确的' . $rule['title'];
+                    throw new \RuntimeException($errorMsg, 501);
                 }
             }
 
             if (in_array($rule['type'], ['int', 'float'])) {
-                if (isset($rule['min_range']) && $value < $rule['min_range']) {
-                    throw new \RuntimeException($rule['title'] . '不能小于' . $rule['min_range'], 501);
-                }
-                if (isset($rule['max_range']) && $value > $rule['max_range']) {
-                    throw new \RuntimeException($rule['title'] . '不能大于' . $rule['max_range'], 501);
-                }
+                self::validateIntAndFloat($value, $rule);
+            }
+            if ($rule['type'] == 'string') {
+                self::validateString($value, $rule);
             }
 
             $result[$key] = $value;
         }
 
         return $result;
+    }
+
+    protected static function validateIntAndFloat($value, $rule)
+    {
+        if (isset($rule['min_range']) && $value < $rule['min_range']) {
+            $errorMsg = $rule['error_msg'] ?? $rule['title'] . '不能小于' . $rule['min_range'];
+            throw new \RuntimeException($errorMsg, 501);
+        }
+        if (isset($rule['max_range']) && $value > $rule['max_range']) {
+            $errorMsg = $rule['error_msg'] ?? $rule['title'] . '不能大于' . $rule['max_range'];
+            throw new \RuntimeException($errorMsg, 501);
+        }
+    }
+
+    protected static function validateString($value, $rule)
+    {
+        if (isset($rule['min-length']) && mb_strlen($value) < $rule['min-length']) {
+            $errorMsg = $rule['error_msg'] ?? $rule['title'] . '长度不能小于' . $rule['min-length'];
+            throw new \RuntimeException($errorMsg, 501);
+        }
+
+        if (isset($rule['max-length']) && mb_strlen($value) > $rule['max-length']) {
+            $errorMsg = $rule['error_msg'] ?? $rule['title'] . '长度不能大于' . $rule['max-length'];
+            throw new \RuntimeException($errorMsg, 501);
+        }
     }
 }
