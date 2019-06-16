@@ -122,7 +122,7 @@ $rules = [
 
 ## 关于我 
 
-crazymus，web开发者，目前定居湖北武汉，主要使用PHP和Java，也喜欢前端技术，曾经深入学习过ExtJS，欢迎与我交流~~
+crazymus，web开发者，目前定居湖北武汉。
 - 个人博客：https://my.oschina.net/crazymus
 - 邮箱：crazymus@foxmail.com
 
