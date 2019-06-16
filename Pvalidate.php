@@ -3,6 +3,7 @@
 class Pvalidate
 {
     const ERROR_CODE_DEFAULT = 1001;
+
     public static function run($params, $rules)
     {
         if (!is_array($rules) || empty($rules)) throw new \RuntimeException('校验规则不能为空', self::ERROR_CODE_DEFAULT);
@@ -16,12 +17,12 @@ class Pvalidate
             }
 
             if ($rule['type'] == 'int') {
-                $value = (int) $value;
+                $value = (int)$value;
             } elseif ($rule['type'] == 'float') {
-                $value = (float) $value;
+                $value = (float)$value;
             } else {
-				$value = htmlspecialchars(trim($value), ENT_QUOTES);
-			}
+                $value = htmlspecialchars(trim($value), ENT_QUOTES);
+            }
 
             if (isset($rule['enum'])) {
                 if (!in_array($value, $rule['enum'])) {
