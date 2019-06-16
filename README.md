@@ -45,8 +45,8 @@ $rules = [
         'type' => 'string',
         'required' => true,
         'title' => '姓名',
-        'min-length' => 10, // 最小长度
-        'max-length' => 20, // 最大长度 
+        'min_length' => 10, // 最小长度
+        'max_length' => 20, // 最大长度 
     ],
 ];
 

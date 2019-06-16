@@ -57,13 +57,13 @@ class Pvalidate
 
     protected static function validateString($value, $rule)
     {
-        if (isset($rule['min-length']) && mb_strlen($value) < $rule['min-length']) {
-            $errorMsg = $rule['error_msg'] ?? $rule['title'] . '长度不能小于' . $rule['min-length'];
+        if (isset($rule['min_length']) && mb_strlen($value) < $rule['min_length']) {
+            $errorMsg = $rule['error_msg'] ?? $rule['title'] . '长度不能小于' . $rule['min_length'];
             throw new \RuntimeException($errorMsg, 501);
         }
 
-        if (isset($rule['max-length']) && mb_strlen($value) > $rule['max-length']) {
-            $errorMsg = $rule['error_msg'] ?? $rule['title'] . '长度不能大于' . $rule['max-length'];
+        if (isset($rule['max_length']) && mb_strlen($value) > $rule['max_length']) {
+            $errorMsg = $rule['error_msg'] ?? $rule['title'] . '长度不能大于' . $rule['max_length'];
             throw new \RuntimeException($errorMsg, 501);
         }
     }
