@@ -1,0 +1,24 @@
+{
+  "name": "crazymus/Pvalidate",
+  "type": "library",
+  "description": "a data validation tool for PHP",
+  "keywords": ["PHP", "data validation"],
+  "homepage": "https://github.com/crazymus/Pvalidate",
+  "license": "MIT",
+  "support": {
+    "issues": "https://github.com/crazymus/Pvalidate/issues"
+  },
+  "authors": [
+    {
+      "name": "crazymus",
+      "email": "crazymus@foxmail.com",
+      "homepage": "https://github.com/crazymus"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.0"
+  },
+  "autoload": {
+    "psr-4": {"Crazymus\\": "src/"}
+  }
+}

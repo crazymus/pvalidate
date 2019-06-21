@@ -2,6 +2,7 @@
 
 define("APP_PATH", dirname(__FILE__));
 require(APP_PATH . '/Pvalidate.php');
+require(APP_PATH . '/PvalidateException.php');
 
 $params = [
     'name' => 'crazymus222222222222222',
@@ -16,8 +17,8 @@ $rules = [
         'type' => 'string',
         'required' => true,
         'title' => '姓名',
-        'min-length' => 10,
-        'max-length' => 20,
+        'min_length' => 10,
+        'max_length' => 15,
         'error_msg' => '姓名格式错误'
     ],
     'age' => [
@@ -45,7 +46,7 @@ $rules = [
 try {
     $validateParams = Pvalidate::run($params, $rules);
     pp($validateParams);
-} catch (\RuntimeException $e) {
+} catch (\Exception $e) {
     echo $e->getMessage();
 }
 
