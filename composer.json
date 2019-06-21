@@ -1,5 +1,5 @@
 {
-  "name": "crazymus/Pvalidate",
+  "name": "crazymus/pvalidate",
   "type": "library",
   "description": "a data validation tool for PHP",
   "keywords": ["PHP", "data validation"],
