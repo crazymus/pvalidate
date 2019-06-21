@@ -1,8 +1,14 @@
 <?php
 
 define("APP_PATH", dirname(__FILE__));
-require(APP_PATH . '/Pvalidate.php');
-require(APP_PATH . '/PvalidateException.php');
+
+spl_autoload_register(function ($className) {
+    $className = str_replace("Crazymus\\", "src\\", $className);
+    $filePath = APP_PATH  . '/' . $className . '.php';
+    if (file_exists($filePath)) {
+        require_once $filePath;
+    }
+});
 
 $params = [
     'name' => 'crazymus222222222222222',
@@ -44,7 +50,7 @@ $rules = [
 
 
 try {
-    $validateParams = Pvalidate::run($params, $rules);
+    $validateParams = \Crazymus\Pvalidate::run($params, $rules);
     pp($validateParams);
 } catch (\Exception $e) {
     echo $e->getMessage();
