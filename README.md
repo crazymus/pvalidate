@@ -69,8 +69,8 @@ $rules = [
         'type' => 'int',
         'required' => true,
         'title' => '年龄',
-        'min-range' => 1, // 最小值为1
-        'max-range' => 100, // 最大值为100
+        'min_range' => 1, // 最小值为1
+        'max_range' => 100, // 最大值为100
     ],
 ];
 
