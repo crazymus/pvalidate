@@ -3,10 +3,10 @@
   "type": "library",
   "description": "a data validation tool for PHP",
   "keywords": ["PHP", "data validation"],
-  "homepage": "https://github.com/crazymus/Pvalidate",
+  "homepage": "https://github.com/crazymus/pvalidate",
   "license": "MIT",
   "support": {
-    "issues": "https://github.com/crazymus/Pvalidate/issues"
+    "issues": "https://github.com/crazymus/pvalidate/issues"
   },
   "authors": [
     {
