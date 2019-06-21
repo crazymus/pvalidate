@@ -1,10 +1,17 @@
 # Pvalidate
 一款简单易用的php数据验证器。数据校验是web开发中重要的环节，也是一项很繁琐的工作。为了提升效率，我想到开发一款通过简单的配置就能完成数据校验的工具，于是，Pvalidate诞生了~~
 ## 使用要求
--  \>= PHP7.0
+-  \>= PHP5.2
 
 ## 安装 
-直接拷贝Pvalidate.php到项目中。使用require引入，或使用Composer自动加载。
+项目目录下执行
+```
+composer require "crazymus/pvalidate"
+```
+若没有全局安装composer，可执行
+```
+php composer.phar require "crazymus/pvalidate"
+```
 ## 快速上手
 ```
 <?php 
@@ -28,7 +35,7 @@ $rules = [
 ];
 
 try {
-    $validateParams = Pvalidate::run($params, $rules);
+    $validateParams = \Crazymus\Pvalidate::run($params, $rules);
     print_r($validateParams);  // 校验后得到的数据
 } catch (\RuntimeException $e) {
     $e->getMessage();
@@ -119,6 +126,10 @@ $rules = [
 
 ?>
 ```
+
+## 其他问题
+若无法正常安装，推荐使用composer中国全量镜像
+- https://pkg.phpcomposer.com
 
 ## 关于我 
 
