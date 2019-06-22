@@ -102,8 +102,8 @@ $rules = [
         'type' => 'float',  // 浮点数类型 
         'required' => true,
         'title' => '充值金额',
-        'min-range' => 1.5,  // 最小值
-        'max-range' => 100.25  // 最大值
+        'min_range' => 1.5,  // 最小值
+        'max_range' => 100.25  // 最大值
     ]
 ];
 
