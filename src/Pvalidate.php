@@ -7,7 +7,7 @@ class Pvalidate
         if (!is_array($rules) || empty($rules)) throw new PvalidateException('校验规则不能为空');
         if (!is_array($params) || empty($params)) throw new PvalidateException('请传递正确的参数');
 
-        $result = [];
+        $result = array();
         foreach ($rules as $key => $rule) {
             $value = isset($params[$key]) ? $params[$key] : '';
             $value = trim($value);
@@ -35,7 +35,7 @@ class Pvalidate
                 }
             }
 
-            if (in_array($rule['type'], ['int', 'float'])) {
+            if (in_array($rule['type'], array('int', 'float'))) {
                 self::validateIntAndFloat($value, $rule);
             }
             if ($rule['type'] == 'string') {
