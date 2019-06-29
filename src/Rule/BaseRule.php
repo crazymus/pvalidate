@@ -42,4 +42,9 @@ class BaseRule
 
         return $this->title . $msg;
     }
+
+    public function getRequired()
+    {
+        return $this->required;
+    }
 }

@@ -16,7 +16,14 @@ class Pvalidate
         foreach ($rules as $key => $rule) {
             $value = isset($params[$key]) ? $params[$key] : '';
             $value = trim($value);
-            $rule->validate($value);
+
+            if ($rule->getRequired()) {
+                $rule->validate($value);
+            }
+            if (!$rule->getRequired() && $value !== '') {
+                $rule->validate($value);
+            }
+
             $result[$key] = $value;
         }
 

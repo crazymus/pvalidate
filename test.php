@@ -17,7 +17,7 @@ $params = array(
     'money' => 100.23,
     'job' => 'Engineer',
     'email' => 'crazymus@foxmail.com',
-    'phone' => '12238490987'
+    'phone' => 18507105403
 );
 
 $rules = array(

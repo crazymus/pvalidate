@@ -43,7 +43,7 @@ $rules = array(
 try {
     $validateParams = \Crazymus\Pvalidate::validate($params, $rules);
     print_r($validateParams);  // 校验后得到的数据
-} catch (\RuntimeException $e) {
+} catch (\Exception $e) {
     $e->getMessage();
 }
 ```
