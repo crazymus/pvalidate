@@ -17,23 +17,25 @@ php composer.phar require "crazymus/pvalidate"
 ```
 <?php 
 
-$params = [
+$params = array(
     'name' => 'crazymus',
     'age' => 20
-];
+);
 
-$rules = [
-    'name' => [
-        'type' => 'string',  // 字符串类型
-        'required' => true,  // 这是必填项
-        'title' => '姓名',  // 字段名称 
-    ],
-    'age' => [
-        'type' => 'int', // 整数类型 
-        'required' => true,
+$rules = array(
+    'name' => new \Crazymus\Rule\StringRule(array(
+        'title' => '姓名', // 字段名称
+        'required' => true, // 必填 
+        'minLenght' => 1,  // 最小长度
+        'maxLength' => 10 // 最大长度
+    )),
+    'age' => new \Crazymus\Rule\NumberRule(array(
         'title' => '年龄',
-    ],
-];
+        'required' => true,
+        'minRange' => 0,  // 最小值
+        'maxRange' => 100, // 最大值 
+    )), 
+);
 
 try {
     $validateParams = \Crazymus\Pvalidate::run($params, $rules);
@@ -43,70 +45,18 @@ try {
 }
 ```
 
-## 长度校验
-```
-<?php
-
-// 注意，长度校验仅支持string类型
-$rules = [
-    'name' => [
-        'type' => 'string',
-        'required' => true,
-        'title' => '姓名',
-        'min_length' => 10, // 最小长度
-        'max_length' => 20, // 最大长度 
-    ],
-];
-
-?>
-```
-
-## 范围校验 
-```
-<?php 
-
-$rules = [
-    'age' => [
-        'type' => 'int',
-        'required' => true,
-        'title' => '年龄',
-        'min_range' => 1, // 最小值为1
-        'max_range' => 100, // 最大值为100
-    ],
-];
-
-?>
-```
 
 ## 枚举值校验 
 ```
 <?php 
 
-$rules = [
-    'sex' => [
-        'type' => 'int',
-        'required' => true,
+$rules = array(
+    'sex' => new \Crazymus\Rule\NumberRule(array(
         'title' => '性别',
-        'enum' => [1,2], // 只能是列出的值 
-    ],
-];
-
-?>
-```
-
-## 浮点数类型 
-```
-<?php 
-
-$rules = [
-    'money' => [
-        'type' => 'float',  // 浮点数类型 
         'required' => true,
-        'title' => '充值金额',
-        'min_range' => 1.5,  // 最小值
-        'max_range' => 100.25  // 最大值
-    ]
-];
+        'enum' => array(1, 2),  // 必须是数组中的值
+    )),
+)
 
 ?>
 ```
@@ -116,14 +66,13 @@ $rules = [
 <?php 
 
 // 自定义错误提示会覆盖默认错误提示
-$rules = [
-    'name' => [
-        'type' => 'string',
-        'required' => true,
+$rules = array(
+    'name' => new \Crazymus\Rule\StringRule(array(
         'title' => '姓名',
-        'error_msg' => '姓名格式错误',
-    ],
-];
+        'required' => true,
+        'errorMsg' => '姓名格式错误', // 会覆盖默认错误提示
+    )),
+)
 
 ?>
 ```

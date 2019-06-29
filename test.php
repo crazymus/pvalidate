@@ -12,51 +12,45 @@ spl_autoload_register(function ($className) {
 
 $params = array(
     'name' => 'crazymus',
-    'age' => 20,
+    'age' => 1,
     'sex' => 2,
     'money' => 20.56,
     'job' => 'Engineer'
 );
 
 $rules = array(
-    'name' => array(
-        'type' => 'string',
-        'required' => true,
+    'name' => new \Crazymus\Rule\StringRule(array(
         'title' => '姓名',
-        'min_length' => 2,
-        'max_length' => 15,
-        'error_msg' => '姓名格式错误'
-    ),
-    'age' => array(
-        'type' => 'int',
         'required' => true,
+        'minLenght' => 1,
+        'maxLength' => 10
+    )),
+    'age' => new \Crazymus\Rule\NumberRule(array(
         'title' => '年龄',
-        'min-range' => 1,
-    ),
-    'sex' => array(
-        'type' => 'int',
         'required' => true,
+        'minRange' => 0,
+        'maxRange' => 100,
+    )),
+    'sex' => new \Crazymus\Rule\NumberRule(array(
         'title' => '性别',
-        'enum' => array(1,2)
-    ),
-    'money' => array(
-        'type' => 'float',
         'required' => true,
-        'title' => '充值金额',
-        'min-range' => 1.5,
-        'max-range' => 100.25
-    ),
-    'job' => array(
-        'type' => 'string',
-        'required' => false,
+        'enum' => array(1, 2),
+        'errorMsg' => '性别格式错误'
+    )),
+    'money' => new \Crazymus\Rule\NumberRule(array(
+        'title' => '金额',
+        'required' => true,
+        'minRange' => 0
+    )),
+    'job' => new \Crazymus\Rule\StringRule(array(
         'title' => '职业',
-        'max_length' => 10
-    )
+        'required' => false,
+    ))
 );
 
 
 try {
-    $validateParams = \Crazymus\Pvalidate::run($params, $rules);
+    $validateParams = \Crazymus\Pvalidate::validate($params, $rules);
     pp($validateParams);
 } catch (\Exception $e) {
     echo $e->getMessage();
