@@ -14,7 +14,7 @@ $params = array(
     'name' => 'crazymus',
     'age' => 1,
     'sex' => 2,
-    'money' => 20.56,
+    'money' => 100.23,
     'job' => 'Engineer'
 );
 
@@ -37,10 +37,9 @@ $rules = array(
         'enum' => array(1, 2),
         'errorMsg' => '性别格式错误'
     )),
-    'money' => new \Crazymus\Rule\NumberRule(array(
+    'money' => new \Crazymus\Rule\MoneyRule(array(
         'title' => '金额',
         'required' => true,
-        'minRange' => 0
     )),
     'job' => new \Crazymus\Rule\StringRule(array(
         'title' => '职业',

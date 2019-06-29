@@ -48,6 +48,20 @@ try {
 }
 ```
 
+## 金额校验 
+```
+<?php
+
+$rules = array(
+    'money' => new \Crazymus\Rule\MoneyRule(array(
+        'title' => '金额',
+        'required' => true,
+    )),
+);
+
+?>
+```
+
 
 ## 枚举值校验 
 ```

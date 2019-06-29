@@ -11,6 +11,8 @@ class NumberRule extends BaseRule
     {
         parent::validate($value);
 
+        if (!is_numeric($value)) throw new PvalidateException($this->renderErrorMsg('类型错误'));
+
         if (isset($this->minRange) && $value < $this->minRange) {
             throw new PvalidateException($this->renderErrorMsg('不能小于' . $this->minRange));
         }
