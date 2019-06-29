@@ -62,6 +62,20 @@ $rules = array(
 ?>
 ```
 
+## 邮箱校验 
+```
+<?php
+
+$rules = array(
+    'email' => new \Crazymus\Rule\EmailRule(array(
+        'title' => '邮箱',
+        'required' => true,
+    )),
+);
+
+?>
+```
+
 
 ## 枚举值校验 
 ```

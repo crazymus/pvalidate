@@ -15,7 +15,8 @@ $params = array(
     'age' => 1,
     'sex' => 2,
     'money' => 100.23,
-    'job' => 'Engineer'
+    'job' => 'Engineer',
+    'email' => 'crazymus@foxmail.com'
 );
 
 $rules = array(
@@ -44,6 +45,10 @@ $rules = array(
     'job' => new \Crazymus\Rule\StringRule(array(
         'title' => '职业',
         'required' => false,
+    )),
+    'email' => new \Crazymus\Rule\EmailRule(array(
+        'title' => '邮箱',
+        'required' => true
     ))
 );
 
