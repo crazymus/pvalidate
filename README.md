@@ -13,6 +13,9 @@ composer require "crazymus/pvalidate"
 ```
 php composer.phar require "crazymus/pvalidate"
 ```
+若无法正常安装，推荐使用composer中国全量镜像
+- https://pkg.phpcomposer.com
+
 ## 快速上手
 ```
 <?php 
@@ -38,7 +41,7 @@ $rules = array(
 );
 
 try {
-    $validateParams = \Crazymus\Pvalidate::run($params, $rules);
+    $validateParams = \Crazymus\Pvalidate::validate($params, $rules);
     print_r($validateParams);  // 校验后得到的数据
 } catch (\RuntimeException $e) {
     $e->getMessage();
@@ -65,7 +68,6 @@ $rules = array(
 ```
 <?php 
 
-// 自定义错误提示会覆盖默认错误提示
 $rules = array(
     'name' => new \Crazymus\Rule\StringRule(array(
         'title' => '姓名',
@@ -77,14 +79,12 @@ $rules = array(
 ?>
 ```
 
-## 其他问题
-若无法正常安装，推荐使用composer中国全量镜像
-- https://pkg.phpcomposer.com
-
 ## 关于我 
 
 crazymus，web开发者，目前定居湖北武汉。
 - 个人博客：https://my.oschina.net/crazymus
 - 邮箱：crazymus@foxmail.com
+
+若有使用上的问题或建议，欢迎和我联系！
 
 
