@@ -82,7 +82,7 @@ $rules = array(
 ## 关于我 
 
 crazymus，web开发者，目前定居湖北武汉。
-- 个人博客：https://my.oschina.net/crazymus
+- 博客：https://my.oschina.net/crazymus
 - 邮箱：crazymus@foxmail.com
 
 若有使用上的问题或建议，欢迎和我联系！
