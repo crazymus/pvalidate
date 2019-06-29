@@ -48,6 +48,20 @@ try {
 }
 ```
 
+## 手机号校验 
+```
+<?php
+
+$rules = array(
+    'phone' => new \Crazymus\Rule\PhoneRule(array(
+        'title' => '手机号',
+        'required' => true,
+    )),
+);
+
+?>
+```
+
 ## 金额校验 
 ```
 <?php
