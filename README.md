@@ -90,6 +90,20 @@ $rules = array(
 ?>
 ```
 
+## URL校验 
+```
+<?php
+
+$rules = array(
+    'site' => new \Crazymus\Rule\URLRule(array(
+        'title' => '网址',
+        'required' => true,
+    )),
+);
+
+?>
+```
+
 
 ## 枚举值校验 
 ```

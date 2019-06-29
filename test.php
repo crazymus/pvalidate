@@ -17,7 +17,8 @@ $params = array(
     'money' => 100.23,
     'job' => 'Engineer',
     'email' => 'crazymus@foxmail.com',
-    'phone' => 18507105403
+    'phone' => 18507105403,
+    'site' => 'https://www.baidu.com/user/index?id=3&name=crazymus'
 );
 
 $rules = array(
@@ -53,6 +54,10 @@ $rules = array(
     )),
     'phone' => new \Crazymus\Rule\PhoneRule(array(
         'title' => '手机号',
+        'required' => true
+    )),
+    'site' => new \Crazymus\Rule\URLRule(array(
+        'title' => '网址',
         'required' => true
     ))
 );
