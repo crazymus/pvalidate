@@ -11,8 +11,12 @@ class Pvalidate
         foreach ($rules as $key => $rule) {
             $value = isset($params[$key]) ? $params[$key] : '';
             $value = trim($value);
+
             if ($rule['required'] && $value === '') {
                 throw new \RuntimeException($rule['title'] . '不能为空', 501);
+            }
+            if (!$rule['required'] && $value === '') {
+                continue;
             }
 
             if ($rule['type'] == 'int') {

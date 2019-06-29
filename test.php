@@ -10,43 +10,49 @@ spl_autoload_register(function ($className) {
     }
 });
 
-$params = [
-    'name' => 'crazymus222222222222222',
+$params = array(
+    'name' => 'crazymus',
     'age' => 20,
     'sex' => 2,
     'money' => 20.56,
     'job' => 'Engineer'
-];
+);
 
-$rules = [
-    'name' => [
+$rules = array(
+    'name' => array(
         'type' => 'string',
         'required' => true,
         'title' => '姓名',
-        'min_length' => 10,
+        'min_length' => 2,
         'max_length' => 15,
         'error_msg' => '姓名格式错误'
-    ],
-    'age' => [
+    ),
+    'age' => array(
         'type' => 'int',
         'required' => true,
         'title' => '年龄',
         'min-range' => 1,
-    ],
-    'sex' => [
+    ),
+    'sex' => array(
         'type' => 'int',
         'required' => true,
         'title' => '性别',
-        'enum' => [1,2]
-    ],
-    'money' => [
+        'enum' => array(1,2)
+    ),
+    'money' => array(
         'type' => 'float',
         'required' => true,
         'title' => '充值金额',
         'min-range' => 1.5,
         'max-range' => 100.25
-    ]
-];
+    ),
+    'job' => array(
+        'type' => 'string',
+        'required' => false,
+        'title' => '职业',
+        'max_length' => 10
+    )
+);
 
 
 try {
@@ -57,10 +63,6 @@ try {
 }
 
 
-function showInConsole($message)
-{
-    echo iconv('utf-8', 'gbk', $message);
-}
 function pp($array)
 {
     print_r($array);
