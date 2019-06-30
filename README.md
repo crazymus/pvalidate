@@ -18,6 +18,9 @@ php composer.phar require "crazymus/pvalidate"
 若无法正常安装，推荐使用composer中国全量镜像
 - https://pkg.phpcomposer.com
 
+## 目录 ##
+[字符串校验](#字符串校验)
+
 ## 字符串校验 ##
 ```php
 <?php 
