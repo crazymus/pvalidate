@@ -162,6 +162,35 @@ $rules = array(
 ?>
 ```
 
+## 自定义校验规则 
+我们可以编写自己的校验规则，来应对特殊的校验场景。可以根据参数的含义，选择继承StringRule
+或者NumberRule，并重载validate方法即可。
+```
+<?php
+
+class MyRule extends \Crazymus\Rule\StringRule
+{
+    public function validate($value)
+    {
+        parent::validate($value);
+
+        //TODO 实现你的校验逻辑
+        if (!in_array($value, array('music', 'movie', 'book'))) {
+            throw new \Crazymus\PvalidateException($this->renderErrorMsg('参数校验失败'));
+        }
+    }
+}
+
+$rules = array(
+    'hobby' => new MyRule(array(
+        'title' => '爱好',
+        'required' => true,
+    ))
+);
+
+?>
+```
+
 ## 自定义错误信息 
 ```
 <?php 
