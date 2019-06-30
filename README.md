@@ -17,7 +17,7 @@ php composer.phar require "crazymus/pvalidate"
 - https://pkg.phpcomposer.com
 
 ## 字符串校验
-```
+```php
 <?php 
 
 $params = array(
@@ -43,7 +43,7 @@ try {
 ```
 
 ## 数字校验 (不区分整数和浮点数)
-```
+```php
 <?php
 
 $rules = array(
@@ -59,7 +59,7 @@ $rules = array(
 ```
 
 ## 整数校验  
-```
+```php
 <?php
 
 $rules = array(
@@ -75,7 +75,7 @@ $rules = array(
 ```
 
 ## 浮点数校验 
-```
+```php
 <?php
 
 $rules = array(
@@ -91,7 +91,7 @@ $rules = array(
 ```
 
 ## 手机号校验 
-```
+```php
 <?php
 
 $rules = array(
@@ -105,7 +105,7 @@ $rules = array(
 ```
 
 ## 金额校验 
-```
+```php
 <?php
 
 $rules = array(
@@ -119,7 +119,7 @@ $rules = array(
 ```
 
 ## 邮箱校验 
-```
+```php
 <?php
 
 $rules = array(
@@ -133,7 +133,7 @@ $rules = array(
 ```
 
 ## URL校验 
-```
+```php
 <?php
 
 $rules = array(
@@ -148,7 +148,7 @@ $rules = array(
 
 
 ## 枚举值校验 
-```
+```php
 <?php 
 
 $rules = array(
@@ -165,7 +165,7 @@ $rules = array(
 ## 自定义校验规则 
 我们可以编写自己的校验规则，来应对特殊的校验场景。可以根据参数的含义，选择继承StringRule
 或者NumberRule，并重载validate方法即可。
-```
+```php
 <?php
 
 class MyRule extends \Crazymus\Rule\StringRule
@@ -192,7 +192,7 @@ $rules = array(
 ```
 
 ## 自定义错误信息 
-```
+```php
 <?php 
 
 $rules = array(
