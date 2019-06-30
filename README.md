@@ -1,10 +1,15 @@
-# Pvalidate
-一款简单易用的php数据验证器。数据校验是web开发中重要的环节，也是一项很繁琐的工作。为了提升效率，我想到开发一款通过简单的配置就能完成数据校验的工具，于是，Pvalidate诞生了~~
-## 使用要求
+# Pvalidate #  
+
+[![GitHub](https://img.shields.io/github/license/crazymus/pvalidate.svg)](LICENSE)
+![GitHub repo size](https://img.shields.io/github/repo-size/crazymus/pvalidate.svg)
+
+数据校验是web开发中重要的环节，也是一项很繁琐的工作。为了提升效率，我想到开发一款通过简单的配置就能完成数据校验的工具，于是，Pvalidate诞生了.
+
+## 使用要求 ##
 -  \>= PHP5.3
 -  mbstring扩展
 
-## 安装 
+## 安装 ##
 项目目录下执行
 ```
 composer require "crazymus/pvalidate"
@@ -16,8 +21,21 @@ php composer.phar require "crazymus/pvalidate"
 若无法正常安装，推荐使用composer中国全量镜像
 - https://pkg.phpcomposer.com
 
-## 字符串校验
-```
+## 目录 ##
+- [字符串校验](#字符串校验)
+- [数字校验](#数字校验)
+- [整数校验](#整数校验)
+- [浮点数校验](#浮点数校验)
+- [手机号校验](#手机号校验)
+- [金额校验](#金额校验)
+- [邮箱校验](#邮箱校验)
+- [URL校验](#URL校验)
+- [枚举值校验](#枚举值校验)
+- [自定义校验规则](#自定义校验规则)
+- [自定义错误信息](#自定义错误信息)
+
+## 字符串校验 ##  
+```php
 <?php 
 
 $params = array(
@@ -41,9 +59,10 @@ try {
     $e->getMessage();
 }
 ```
-
-## 数字校验 (不区分整数和浮点数)
-```
+[返回目录](#目录)
+ 
+## 数字校验 ## 
+```php
 <?php
 
 $rules = array(
@@ -57,9 +76,10 @@ $rules = array(
 
 ?>
 ```
+[返回目录](#目录)
 
-## 整数校验  
-```
+## 整数校验  ##
+```php
 <?php
 
 $rules = array(
@@ -73,9 +93,10 @@ $rules = array(
 
 ?>
 ```
+[返回目录](#目录)
 
-## 浮点数校验 
-```
+## 浮点数校验 ##
+```php
 <?php
 
 $rules = array(
@@ -89,9 +110,10 @@ $rules = array(
 
 ?>
 ```
+[返回目录](#目录)
 
-## 手机号校验 
-```
+## 手机号校验 ##
+```php
 <?php
 
 $rules = array(
@@ -103,9 +125,10 @@ $rules = array(
 
 ?>
 ```
+[返回目录](#目录)
 
-## 金额校验 
-```
+## 金额校验 ##
+```php
 <?php
 
 $rules = array(
@@ -117,9 +140,10 @@ $rules = array(
 
 ?>
 ```
+[返回目录](#目录)
 
-## 邮箱校验 
-```
+## 邮箱校验 ##
+```php
 <?php
 
 $rules = array(
@@ -131,9 +155,10 @@ $rules = array(
 
 ?>
 ```
+[返回目录](#目录)
 
-## URL校验 
-```
+## URL校验 ##
+```php
 <?php
 
 $rules = array(
@@ -145,10 +170,11 @@ $rules = array(
 
 ?>
 ```
+[返回目录](#目录)
 
 
-## 枚举值校验 
-```
+## 枚举值校验 ##
+```php
 <?php 
 
 $rules = array(
@@ -161,11 +187,12 @@ $rules = array(
 
 ?>
 ```
+[返回目录](#目录)
 
-## 自定义校验规则 
-我们可以编写自己的校验规则，来应对特殊的校验场景。根据参数的含义，选择继承StringRule
+## 自定义校验规则 ##
+我们可以编写自己的校验规则，来应对特殊的校验场景。可以根据参数的含义，选择继承StringRule
 或者NumberRule，并重载validate方法即可。
-```
+```php
 <?php
 
 class MyRule extends \Crazymus\Rule\StringRule
@@ -190,9 +217,10 @@ $rules = array(
 
 ?>
 ```
+[返回目录](#目录)
 
-## 自定义错误信息 
-```
+## 自定义错误信息 ##
+```php
 <?php 
 
 $rules = array(
@@ -205,5 +233,6 @@ $rules = array(
 
 ?>
 ```
+[返回目录](#目录)
 
 
