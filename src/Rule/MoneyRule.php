@@ -12,11 +12,9 @@ class MoneyRule extends NumberRule
             throw new PvalidateException($this->renderErrorMsg('不能小于0'));
         }
 
-        if (strpos($value, '.') !== false) {
-            $point = strlen(substr($value, strpos($value, '.') + 1));
-            if ($point > 2) {
-                throw new PvalidateException($this->renderErrorMsg('小数点不能超过2位'));
-            }
+        $precision = $this->getPrecision($value);
+        if ($precision > 2) {
+            throw new PvalidateException($this->renderErrorMsg('小数点不能超过2位'));
         }
     }
 }

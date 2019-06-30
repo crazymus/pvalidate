@@ -12,8 +12,9 @@ spl_autoload_register(function ($className) {
 
 $params = array(
     'name' => 'crazymus',
-    'age' => 1,
+    'age' => "23",
     'sex' => 2,
+    'ratio' => "0.9",
     'money' => 100.23,
     'job' => 'Engineer',
     'email' => 'crazymus@foxmail.com',
@@ -28,7 +29,7 @@ $rules = array(
         'minLenght' => 1,
         'maxLength' => 10
     )),
-    'age' => new \Crazymus\Rule\NumberRule(array(
+    'age' => new \Crazymus\Rule\IntegerRule(array(
         'title' => '年龄',
         'required' => true,
         'minRange' => 0,
@@ -59,6 +60,11 @@ $rules = array(
     'site' => new \Crazymus\Rule\URLRule(array(
         'title' => '网址',
         'required' => true
+    )),
+    'ratio' => new \Crazymus\Rule\FloatRule(array(
+        'title' => '比率',
+        'required' => true,
+        'precision' => 2
     ))
 );
 

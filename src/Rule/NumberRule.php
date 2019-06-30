@@ -20,4 +20,19 @@ class NumberRule extends BaseRule
             throw new PvalidateException($this->renderErrorMsg('不能大于' . $this->maxRange));
         }
     }
+
+    /**
+     * 获取小数点位数
+     * @param $value
+     * @return int
+     */
+    public function getPrecision($value)
+    {
+        if (strpos($value, '.') === false) {
+            return 0;
+        }
+
+        $precision = strlen(substr($value, strpos($value, '.') + 1));
+        return $precision;
+    }
 }

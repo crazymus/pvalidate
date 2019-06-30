@@ -16,7 +16,7 @@ php composer.phar require "crazymus/pvalidate"
 若无法正常安装，推荐使用composer中国全量镜像
 - https://pkg.phpcomposer.com
 
-## 快速上手
+## 字符串校验
 ```
 <?php 
 
@@ -31,13 +31,7 @@ $rules = array(
         'required' => true, // 必填 
         'minLenght' => 1,  // 最小长度
         'maxLength' => 10 // 最大长度
-    )),
-    'age' => new \Crazymus\Rule\NumberRule(array(
-        'title' => '年龄',
-        'required' => true,
-        'minRange' => 0,  // 最小值
-        'maxRange' => 100, // 最大值 
-    )), 
+    ))
 );
 
 try {
@@ -46,6 +40,54 @@ try {
 } catch (\Exception $e) {
     $e->getMessage();
 }
+```
+
+## 数字校验 (不区分整数和浮点数)
+```
+<?php
+
+$rules = array(
+    'age' => new \Crazymus\Rule\NumberRule(array(
+        'title' => '年龄',
+        'required' => true,
+        'minRange' => 0,  // 最小值
+        'maxRange' => 100, // 最大值 
+    )), 
+);
+
+?>
+```
+
+## 整数校验  
+```
+<?php
+
+$rules = array(
+    'age' => new \Crazymus\Rule\IntegerRule(array(
+        'title' => '年龄',
+        'required' => true,
+        'minRange' => 0,  // 最小值
+        'maxRange' => 100, // 最大值 
+    )), 
+);
+
+?>
+```
+
+## 浮点数校验 
+```
+<?php
+
+$rules = array(
+    'ratio' => new \Crazymus\Rule\FloatRule(array(
+        'title' => '比率',
+        'required' => true,
+        'minRange' => 0, // 最小值为0
+        'precision' => 2, // 小数点位数最大为2 
+    )), 
+);
+
+?>
 ```
 
 ## 手机号校验 
