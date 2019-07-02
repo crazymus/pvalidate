@@ -172,6 +172,20 @@ $rules = array(
 ```
 [返回目录](#目录)
 
+## 身份证校验 ##
+```php
+<?php
+
+$rules = array(
+    'idcard' => new \Crazymus\Rule\IDCardRule(array(
+        'title' => '身份证',
+        'required' => true,
+    )),
+);
+
+?>
+```
+[返回目录](#目录)
 
 ## 枚举值校验 ##
 ```php
