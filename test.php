@@ -25,7 +25,7 @@ class MyRule extends \Crazymus\Rule\StringRule
 }
 
 $params = array(
-    'name' => 'crazymus',
+    'name' => '用户名用户名',
     'age' => "23",
     'sex' => 2,
     'ratio' => "0.9",
@@ -42,7 +42,8 @@ $rules = array(
         'title' => '姓名',
         'required' => true,
         'minLenght' => 1,
-        'maxLength' => 10
+        'maxLength' => 6,
+        'charset' => 'GBK'
     )),
     'age' => new \Crazymus\Rule\IntegerRule(array(
         'title' => '年龄',

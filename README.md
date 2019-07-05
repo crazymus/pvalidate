@@ -49,7 +49,8 @@ $rules = array(
         'title' => '姓名', // 字段名称
         'required' => true, // 必填 
         'minLenght' => 1,  // 最小长度
-        'maxLength' => 10 // 最大长度
+        'maxLength' => 10, // 最大长度
+        'charset' => 'GBK', // 字符串编码
     ))
 );
 
