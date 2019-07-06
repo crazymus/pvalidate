@@ -4,11 +4,11 @@ use Crazymus\PvalidateException;
 
 class URLRule extends StringRule
 {
-    public function validate($value)
+    public function validate($param)
     {
-        parent::validate($value);
+        parent::validate($param);
 
-        if (!filter_var($value, FILTER_VALIDATE_URL)) {
+        if (!filter_var($param, FILTER_VALIDATE_URL)) {
             throw new PvalidateException($this->renderErrorMsg('格式错误'));
         }
     }

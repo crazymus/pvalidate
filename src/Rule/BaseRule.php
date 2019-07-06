@@ -8,6 +8,8 @@ class BaseRule
 
     protected $required = false;
 
+    protected $value = null;
+
     protected $errorMsg = null;
 
     protected $enum = array();
@@ -21,14 +23,14 @@ class BaseRule
         }
     }
 
-    public function validate($value)
+    public function validate($param)
     {
-        if ($this->required && $value === '') {
+        if ($this->required && $param === '') {
             throw new PvalidateException($this->renderErrorMsg('不能为空'));
         }
 
         if (!empty($this->enum)) {
-            if (!in_array($value, $this->enum)) {
+            if (!in_array($param, $this->enum)) {
                 throw new PvalidateException($this->renderErrorMsg('类型错误'));
             }
         }

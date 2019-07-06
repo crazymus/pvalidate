@@ -4,10 +4,10 @@ use Crazymus\PvalidateException;
 
 class IntegerRule extends NumberRule
 {
-    public function validate($value)
+    public function validate($param)
     {
-        parent::validate($value);
+        parent::validate($param);
 
-        if (floor($value) != $value) throw new PvalidateException($this->renderErrorMsg('不是整数'));
+        if (floor($param) != $param) throw new PvalidateException($this->renderErrorMsg('不是整数'));
     }
 }

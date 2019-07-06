@@ -26,7 +26,7 @@ class MyRule extends \Crazymus\Rule\StringRule
 
 $params = array(
     'name' => '用户名用户名',
-    'age' => "23",
+    'age' => 20,
     'sex' => 2,
     'ratio' => "0.9",
     'money' => 100.23,
@@ -34,7 +34,7 @@ $params = array(
     'email' => 'crazymus@foxmail.com',
     'phone' => 18507105403,
     'site' => 'https://www.baidu.com/user/index?id=3&name=crazymus',
-    'hobby' => 'game'
+    'hobby' => 'music'
 );
 
 $rules = array(
@@ -43,13 +43,14 @@ $rules = array(
         'required' => true,
         'minLenght' => 1,
         'maxLength' => 6,
-        'charset' => 'GBK'
+        'charset' => 'utf-8'
     )),
     'age' => new \Crazymus\Rule\IntegerRule(array(
         'title' => '年龄',
         'required' => true,
         'minRange' => 0,
         'maxRange' => 100,
+        'value' => array('>', 18)
     )),
     'sex' => new \Crazymus\Rule\NumberRule(array(
         'title' => '性别',

@@ -7,16 +7,16 @@ class NumberRule extends BaseRule
     protected $minRange = null;
     protected $maxRange = null;
 
-    public function validate($value)
+    public function validate($param)
     {
-        parent::validate($value);
+        parent::validate($param);
 
-        if (!is_numeric($value)) throw new PvalidateException($this->renderErrorMsg('类型错误'));
+        if (!is_numeric($param)) throw new PvalidateException($this->renderErrorMsg('类型错误'));
 
-        if (isset($this->minRange) && $value < $this->minRange) {
+        if (isset($this->minRange) && $param < $this->minRange) {
             throw new PvalidateException($this->renderErrorMsg('不能小于' . $this->minRange));
         }
-        if (isset($this->maxRange) && $value > $this->maxRange) {
+        if (isset($this->maxRange) && $param > $this->maxRange) {
             throw new PvalidateException($this->renderErrorMsg('不能大于' . $this->maxRange));
         }
     }
@@ -26,13 +26,13 @@ class NumberRule extends BaseRule
      * @param $value
      * @return int
      */
-    public function getPrecision($value)
+    public function getPrecision($param)
     {
-        if (strpos($value, '.') === false) {
+        if (strpos($param, '.') === false) {
             return 0;
         }
 
-        $precision = strlen(substr($value, strpos($value, '.') + 1));
+        $precision = strlen(substr($param, strpos($param, '.') + 1));
         return $precision;
     }
 }
