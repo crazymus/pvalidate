@@ -37,7 +37,7 @@ class Pvalidate
                         throw new PvalidateException('规则不能为空');
                     }
                 } else {
-                    throw new PvalidateException('规则已经存在');
+                    throw new PvalidateException($ruleN.'规则已经存在');
                 }
             }
             return true;
@@ -50,17 +50,35 @@ class Pvalidate
                 throw new PvalidateException('规则已经存在');
             }
         } else {
-            throw new PvalidateException('规则不能为空');
+            throw new PvalidateException($ruleName.'规则已经存在');
         }
         return true;
     }
 
+    /**
+     * 获取验证规则类的实例
+     * @param $type string  验证类型
+     * @param $rules        验证内容
+     * @return object
+     * @throws PvalidateException
+     * @throws \ReflectionException
+     */
     protected static function getRuleClass($type = 'string', $rules)
     {
         if (isset(self::$ruleMap[$type]) && !empty(self::$ruleMap[$type])) {
-            $ref = new \ReflectionClass(self::$ruleMap[$type]);
-            $instance  = $ref->newInstance($rules);
-            return $instance;
+
+            try {
+                $ref = new \ReflectionClass(self::$ruleMap[$type]);
+                $instance  = $ref->newInstance($rules);
+
+                if ($instance instanceof BaseRule) {
+                    return $instance;
+                }
+                throw new PvalidateException(self::$ruleMap[$type].'不合法');
+            } catch (\ReflectionException $e) {
+                throw new PvalidateException(self::$ruleMap[$type].'不存在');
+            }
+
         }
         throw new PvalidateException('校验规则不存在');
     }
@@ -76,8 +94,8 @@ class Pvalidate
          * @var BaseRule $rule
          */
         foreach ($rules as $key => $rule) {
-            $value = isset($params[$key]) ? $params[$key] : '';
-            $value = trim($value);
+            $value = isset($params[$key]) ? trim($params[$key]) : '';
+
             $ruleName = isset($rule['type']) ? $rule['type'] : 'string';
             $ruleClass = self::getRuleClass($ruleName, $rule);
 

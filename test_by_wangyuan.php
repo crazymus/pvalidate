@@ -12,19 +12,6 @@ spl_autoload_register(function ($className) {
 });
 
 
-class MyRule extends \Crazymus\Rule\StringRule
-{
-    public function validate($value)
-    {
-        parent::validate($value);
-
-        //TODO 实现你的校验逻辑
-        if (!in_array($value, array('music', 'movie', 'book'))) {
-            throw new \Crazymus\PvalidateException($this->renderErrorMsg('参数校验失败'));
-        }
-    }
-}
-
 $params = array(
     'name' => '用户名用户名',
     'age' => 20,
@@ -101,8 +88,9 @@ $rules = array(
 // 添加自定义规则
 //\Crazymus\Pvalidate::addRules('myRule', 'MyRule');
 \Crazymus\Pvalidate::addRules(array(
-    'myRule' => 'MyRule'
+    'myRule' => '\Crazymus\customRule\MyRule'
 ));
+
 
 try {
     $validateParams = \Crazymus\Pvalidate::validate($params, $rules);
