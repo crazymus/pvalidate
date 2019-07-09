@@ -5,8 +5,6 @@ define("APP_PATH", dirname(__FILE__));
 spl_autoload_register(function ($className) {
     $className = str_replace("Crazymus\\", "src\\", $className);
     $filePath = APP_PATH  . '/' . $className . '.php';
-    // mac, linux, window 路径分隔符统一
-    $filePath = str_replace("\\", DIRECTORY_SEPARATOR, $filePath);
     if (file_exists($filePath)) {
         require_once $filePath;
     }
