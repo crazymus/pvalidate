@@ -47,7 +47,7 @@ class Pvalidate
             if (!empty($ruleClass)) {
                 self::$ruleMap[$ruleName] = $ruleClass;
             } else {
-                throw new PvalidateException('规则已经存在');
+                throw new PvalidateException('规则不能为空');
             }
         } else {
             throw new PvalidateException($ruleName.'规则已经存在');
