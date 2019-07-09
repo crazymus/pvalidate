@@ -5,24 +5,13 @@ define("APP_PATH", dirname(__FILE__));
 spl_autoload_register(function ($className) {
     $className = str_replace("Crazymus\\", "src\\", $className);
     $filePath = APP_PATH  . '/' . $className . '.php';
+    // mac, linux, window 路径分隔符统一
+    $filePath = str_replace("\\", DIRECTORY_SEPARATOR, $filePath);
     if (file_exists($filePath)) {
         require_once $filePath;
     }
 });
 
-
-class MyRule extends \Crazymus\Rule\StringRule
-{
-    public function validate($value)
-    {
-        parent::validate($value);
-
-        //TODO 实现你的校验逻辑
-        if (!in_array($value, array('music', 'movie', 'book'))) {
-            throw new \Crazymus\PvalidateException($this->renderErrorMsg('参数校验失败'));
-        }
-    }
-}
 
 $params = array(
     'name' => '用户名用户名',
@@ -38,56 +27,71 @@ $params = array(
 );
 
 $rules = array(
-    'name' => new \Crazymus\Rule\StringRule(array(
+    'name' => array(
         'title' => '姓名',
         'required' => true,
         'minLenght' => 1,
         'maxLength' => 6,
         'charset' => 'utf-8'
-    )),
-    'age' => new \Crazymus\Rule\IntegerRule(array(
+    ),
+    'age' => array(
+        'type' => 'integer',
         'title' => '年龄',
         'required' => true,
         'minRange' => 0,
         'maxRange' => 100,
         'value' => array('>', 18)
-    )),
-    'sex' => new \Crazymus\Rule\NumberRule(array(
+    ),
+    'sex' => array(
+        'type' => 'number',
         'title' => '性别',
         'required' => true,
         'enum' => array(1, 2),
         'errorMsg' => '性别格式错误'
-    )),
-    'money' => new \Crazymus\Rule\MoneyRule(array(
+    ),
+    'money' => array(
+        'type' => 'money',
         'title' => '金额',
         'required' => true,
-    )),
-    'job' => new \Crazymus\Rule\StringRule(array(
+    ),
+    'job' => array(
         'title' => '职业',
         'required' => false,
-    )),
-    'email' => new \Crazymus\Rule\EmailRule(array(
+    ),
+    'email' => array(
+        'type' => 'email',
         'title' => '邮箱',
         'required' => true
-    )),
-    'phone' => new \Crazymus\Rule\PhoneRule(array(
+    ),
+    'phone' => array(
+        'type' => 'phone',
         'title' => '手机号',
         'required' => true
-    )),
-    'site' => new \Crazymus\Rule\URLRule(array(
+    ),
+    'site' => array(
+        'type' => 'url',
         'title' => '网址',
         'required' => true
-    )),
-    'ratio' => new \Crazymus\Rule\FloatRule(array(
+    ),
+    'ratio' => array(
+        'type' => 'float',
         'title' => '比率',
         'required' => true,
         'precision' => 2
-    )),
-    'hobby' => new MyRule(array(
+    ),
+    'hobby' => array(
+        'type' => 'myRule',
         'title' => '爱好',
         'required' => true,
-    ))
+    )
 );
+
+// 添加自定义规则
+//\Crazymus\Pvalidate::addRules('myRule', 'MyRule');
+\Crazymus\Pvalidate::addRules(array(
+    'myRule' => '\Crazymus\customRule\MyRule'
+));
+
 
 try {
     $validateParams = \Crazymus\Pvalidate::validate($params, $rules);
@@ -99,6 +103,9 @@ try {
 
 function pp($array)
 {
+    echo "<pre>";
     print_r($array);
+    echo "</pre>";
     exit;
 }
+
