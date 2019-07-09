@@ -58,17 +58,20 @@ class Pvalidate
     /**
      * 获取验证规则类的实例
      * @param $type string  验证类型
-     * @param $rules        验证内容
+     * @param $rules array  验证内容
      * @return object
      * @throws PvalidateException
      * @throws \ReflectionException
      */
-    protected static function getRuleClass($type = 'string', $rules)
+    protected static function getRuleClass($type, $rules)
     {
         if (isset(self::$ruleMap[$type]) && !empty(self::$ruleMap[$type])) {
 
             try {
                 $ref = new \ReflectionClass(self::$ruleMap[$type]);
+                /**
+                 * @var BaseRule $instance
+                 */
                 $instance  = $ref->newInstance($rules);
 
                 if ($instance instanceof BaseRule) {
@@ -91,7 +94,7 @@ class Pvalidate
 
         $result = array();
         /**
-         * @var BaseRule $rule
+         * @var array $rule
          */
         foreach ($rules as $key => $rule) {
             $value = isset($params[$key]) ? trim($params[$key]) : '';
