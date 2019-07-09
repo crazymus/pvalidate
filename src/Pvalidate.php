@@ -4,6 +4,68 @@ use Crazymus\Rule\BaseRule;
 
 class Pvalidate
 {
+    /**
+     * 验证规则与类的映射关系
+     * @var array
+     */
+    protected static $ruleMap = array(
+        'string' => '\Crazymus\Rule\StringRule',
+        'integer' => '\Crazymus\Rule\IntegerRule',
+        'number' => '\Crazymus\Rule\NumberRule',
+        'money' => '\Crazymus\Rule\MoneyRule',
+        'email' => '\Crazymus\Rule\EmailRule',
+        'phone' => '\Crazymus\Rule\PhoneRule',
+        'url' => '\Crazymus\Rule\URLRule',
+        'float' => '\Crazymus\Rule\FloatRule',
+        'idCard' => '\Crazymus\Rule\IDCardRule',
+    );
+
+    /**
+     * 挂载自定义验证规则
+     * @param $ruleName  array|string   规则名称
+     * @param $ruleClass string   规则类名称
+     * @throws PvalidateException
+     */
+    public static function addRules($ruleName, $ruleClass = '')
+    {
+        if (is_array($ruleName)) {
+            foreach ($ruleName as $ruleN => $ruleC) {
+                if (!isset(self::$ruleMap[$ruleN])) {
+                    if (!empty($ruleC)) {
+                        self::$ruleMap[$ruleN] = $ruleC;
+                    } else {
+                        throw new PvalidateException('规则不能为空');
+                    }
+                } else {
+                    throw new PvalidateException('规则已经存在');
+                }
+            }
+            return true;
+        }
+
+        if (!isset(self::$ruleMap[$ruleName])) {
+            if (!empty($ruleClass)) {
+                self::$ruleMap[$ruleName] = $ruleClass;
+            } else {
+                throw new PvalidateException('规则已经存在');
+            }
+        } else {
+            throw new PvalidateException('规则不能为空');
+        }
+        return true;
+    }
+
+    protected static function getRuleClass($type = 'string', $rules)
+    {
+        if (isset(self::$ruleMap[$type]) && !empty(self::$ruleMap[$type])) {
+            $ref = new \ReflectionClass(self::$ruleMap[$type]);
+            $instance  = $ref->newInstance($rules);
+            return $instance;
+        }
+        throw new PvalidateException('校验规则不存在');
+    }
+
+
     public static function validate($params, $rules)
     {
         if (!is_array($rules) || empty($rules)) throw new PvalidateException('校验规则不能为空');
@@ -16,12 +78,14 @@ class Pvalidate
         foreach ($rules as $key => $rule) {
             $value = isset($params[$key]) ? $params[$key] : '';
             $value = trim($value);
+            $ruleName = isset($rule['type']) ? $rule['type'] : 'string';
+            $ruleClass = self::getRuleClass($ruleName, $rule);
 
-            if ($rule->getRequired()) {
-                $rule->validate($value);
+            if ($ruleClass->getRequired()) {
+                $ruleClass->validate($value);
             }
-            if (!$rule->getRequired() && $value !== '') {
-                $rule->validate($value);
+            if (!$ruleClass->getRequired() && $value !== '') {
+                $ruleClass->validate($value);
             }
 
             $result[$key] = $value;
