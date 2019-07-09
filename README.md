@@ -47,13 +47,14 @@ $params = array(
 );
 
 $rules = array(
-    'name' => new \Crazymus\Rule\StringRule(array(
+    'name' => array(
+        'type' => 'string', // 字符串类型
         'title' => '姓名', // 字段名称
         'required' => true, // 必填 
         'minLenght' => 1,  // 最小长度
         'maxLength' => 10, // 最大长度
         'charset' => 'GBK', // 字符串编码
-    ))
+    )
 );
 
 try {
@@ -70,12 +71,13 @@ try {
 <?php
 
 $rules = array(
-    'age' => new \Crazymus\Rule\NumberRule(array(
+    'age' => array(
+        'type' => 'number', 
         'title' => '年龄',
         'required' => true,
         'minRange' => 0,  // 最小值
         'maxRange' => 100, // 最大值 
-    )), 
+    ), 
 );
 
 ?>
@@ -87,12 +89,13 @@ $rules = array(
 <?php
 
 $rules = array(
-    'age' => new \Crazymus\Rule\IntegerRule(array(
+    'age' => array(
+        'type' => 'integer', 
         'title' => '年龄',
         'required' => true,
         'minRange' => 0,  // 最小值
         'maxRange' => 100, // 最大值 
-    )), 
+    ), 
 );
 
 ?>
@@ -104,12 +107,13 @@ $rules = array(
 <?php
 
 $rules = array(
-    'ratio' => new \Crazymus\Rule\FloatRule(array(
+    'ratio' => array(
+        'type' => 'float', 
         'title' => '比率',
         'required' => true,
         'minRange' => 0, // 最小值为0
         'precision' => 2, // 小数点位数最大为2 
-    )), 
+    ), 
 );
 
 ?>
@@ -121,10 +125,11 @@ $rules = array(
 <?php
 
 $rules = array(
-    'phone' => new \Crazymus\Rule\PhoneRule(array(
+    'phone' => array(
+        'type' => 'phone', 
         'title' => '手机号',
         'required' => true,
-    )),
+    ),
 );
 
 ?>
@@ -136,10 +141,11 @@ $rules = array(
 <?php
 
 $rules = array(
-    'money' => new \Crazymus\Rule\MoneyRule(array(
+    'money' => array(
+        'type' => 'money', 
         'title' => '金额',
         'required' => true,
-    )),
+    ),
 );
 
 ?>
@@ -151,10 +157,11 @@ $rules = array(
 <?php
 
 $rules = array(
-    'email' => new \Crazymus\Rule\EmailRule(array(
+    'email' => array(
+        'type' => 'email', 
         'title' => '邮箱',
         'required' => true,
-    )),
+    ),
 );
 
 ?>
@@ -166,10 +173,11 @@ $rules = array(
 <?php
 
 $rules = array(
-    'site' => new \Crazymus\Rule\URLRule(array(
+    'site' => array(
+        'type' => 'url', 
         'title' => '网址',
         'required' => true,
-    )),
+    ),
 );
 
 ?>
@@ -181,10 +189,11 @@ $rules = array(
 <?php
 
 $rules = array(
-    'idcard' => new \Crazymus\Rule\IDCardRule(array(
+    'idcard' => array(
+        'type' => 'idCard', 
         'title' => '身份证',
         'required' => true,
-    )),
+    ),
 );
 
 ?>
@@ -196,11 +205,12 @@ $rules = array(
 <?php 
 
 $rules = array(
-    'sex' => new \Crazymus\Rule\NumberRule(array(
+    'sex' => array(
+        'type' => 'number', 
         'title' => '性别',
         'required' => true,
         'enum' => array(1, 2),  // 必须是数组中的值
-    )),
+    ),
 )
 
 ?>
@@ -211,7 +221,7 @@ $rules = array(
 我们可以编写自己的校验规则，来应对特殊的校验场景。可以根据参数的含义，选择继承StringRule
 或者NumberRule，并重载validate方法即可。
 ```php
-<?php
+<?php namespace MyApp\Rules;
 
 class MyRule extends \Crazymus\Rule\StringRule
 {
@@ -226,11 +236,18 @@ class MyRule extends \Crazymus\Rule\StringRule
     }
 }
 
+// 添加自定义规则 
+\Crazymus\Pvalidate::addRules(array(
+    'myRule' => '\MyApp\Rules\MyRule'
+));
+
+// 使用自定义规则 
 $rules = array(
-    'hobby' => new MyRule(array(
+    'hobby' => array(
+        'type' => 'myRule', 
         'title' => '爱好',
         'required' => true,
-    ))
+    )
 );
 
 ?>
@@ -242,11 +259,12 @@ $rules = array(
 <?php 
 
 $rules = array(
-    'name' => new \Crazymus\Rule\StringRule(array(
+    'name' => array(
+        'type' => 'string',
         'title' => '姓名',
         'required' => true,
         'errorMsg' => '姓名格式错误', // 会覆盖默认错误提示
-    )),
+    ),
 )
 
 ?>
