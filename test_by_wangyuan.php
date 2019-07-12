@@ -15,7 +15,7 @@ spl_autoload_register(function ($className) {
 
 $params = array(
     'name' => '用户名用户名',
-    'age' => 20,
+    'age' => 19,
     'sex' => 2,
     'ratio' => "0.9",
     'money' => 100.23,
@@ -38,9 +38,7 @@ $rules = array(
         'type' => 'integer',
         'title' => '年龄',
         'required' => true,
-        'minRange' => 0,
-        'maxRange' => 100,
-        'value' => array('>', 18)
+        'value' => array('>=', 18)
     ),
     'sex' => array(
         'type' => 'number',

@@ -1,6 +1,7 @@
 <?php namespace Crazymus\Rule;
 
 use Crazymus\PvalidateException;
+use Crazymus\Utils\OperatorValidator;
 
 class NumberRule extends BaseRule
 {
@@ -18,6 +19,14 @@ class NumberRule extends BaseRule
         }
         if (isset($this->maxRange) && $param > $this->maxRange) {
             throw new PvalidateException($this->renderErrorMsg('不能大于' . $this->maxRange));
+        }
+
+        if (isset($this->value)) {
+            try {
+                OperatorValidator::validate($param, $this->value);
+            } catch (PvalidateException $e) {
+                throw new PvalidateException($this->renderErrorMsg($e->getMessage()));
+            }
         }
     }
 
