@@ -51,9 +51,26 @@ $rules = array(
         'type' => 'string', // 字符串类型
         'title' => '姓名', // 字段名称
         'required' => true, // 必填 
-        'minLenght' => 1,  // 最小长度
-        'maxLength' => 10, // 最大长度
+        'length' => 10, // 长度必须等于10
         'charset' => 'GBK', // 字符串编码
+    )
+);
+
+// 长度支持运算符 
+$rules = array(
+    'name' => array(
+        'type' => 'string',  
+        'length' => array('>', 10), // 长度必须大于10  
+    )
+);
+
+$rules = array(
+    'name' => array(
+        'type' => 'string',  
+        'length' => array( // 长度必须大于10，且小于等于30
+            array('>', 10),
+            array('<=', 50)
+        ), 
     )
 );
 
@@ -79,12 +96,10 @@ $rules = array(
     ), 
 );
 
-// 数字类规则支持运算符校验
+// 支持运算符校验
 $rules = array(
     'age' => array(
         'type' => 'number', 
-        'title' => '年龄',
-        'required' => true,
         'value' => array('>', 18) // 大于18
     )
 );
@@ -92,8 +107,6 @@ $rules = array(
 $rules = array(
     'age' => array(
         'type' => 'number', 
-        'title' => '年龄',
-        'required' => true,
         'value' => array(  // 大于等于18，且小于60 
             array('>=', 18),
             array('<', 60)

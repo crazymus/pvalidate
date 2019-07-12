@@ -30,8 +30,10 @@ $rules = array(
     'name' => array(
         'title' => '姓名',
         'required' => true,
-        'minLenght' => 1,
-        'maxLength' => 6,
+        'length' => array(
+            array('>', 5),
+            array('<=', 6)
+        ),
         'charset' => 'utf-8'
     ),
     'age' => array(
@@ -51,6 +53,7 @@ $rules = array(
         'type' => 'money',
         'title' => '金额',
         'required' => true,
+        'value' => array('>', 100)
     ),
     'job' => array(
         'title' => '职业',
