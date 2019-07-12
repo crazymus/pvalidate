@@ -75,9 +75,30 @@ $rules = array(
         'type' => 'number', 
         'title' => '年龄',
         'required' => true,
-        'minRange' => 0,  // 最小值
-        'maxRange' => 100, // 最大值 
+        'value' => 10, // 值必须等于10
     ), 
+);
+
+// 数字类规则支持运算符校验
+$rules = array(
+    'age' => array(
+        'type' => 'number', 
+        'title' => '年龄',
+        'required' => true,
+        'value' => array('>', 18) // 大于18
+    )
+);
+
+$rules = array(
+    'age' => array(
+        'type' => 'number', 
+        'title' => '年龄',
+        'required' => true,
+        'value' => array(  // 大于等于18，且小于60 
+            array('>=', 18),
+            array('<', 60)
+        )
+    )
 );
 
 ?>
@@ -93,8 +114,7 @@ $rules = array(
         'type' => 'integer', 
         'title' => '年龄',
         'required' => true,
-        'minRange' => 0,  // 最小值
-        'maxRange' => 100, // 最大值 
+        'value' => array('>', 18)
     ), 
 );
 
@@ -111,8 +131,8 @@ $rules = array(
         'type' => 'float', 
         'title' => '比率',
         'required' => true,
-        'minRange' => 0, // 最小值为0
         'precision' => 2, // 小数点位数最大为2 
+        'value' => array('>', 1.25)
     ), 
 );
 
