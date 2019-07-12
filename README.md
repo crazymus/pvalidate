@@ -52,7 +52,7 @@ $rules = array(
         'title' => '姓名', // 字段名称
         'required' => true, // 必填 
         'length' => 10, // 长度必须等于10
-        'charset' => 'GBK', // 字符串编码
+        'charset' => 'GBK', // 字符串编码，所不指定则默认使用文档的编码
     )
 );
 
@@ -67,7 +67,7 @@ $rules = array(
 $rules = array(
     'name' => array(
         'type' => 'string',  
-        'length' => array( // 长度必须大于10，且小于等于30
+        'length' => array( // 长度必须大于10，且小于等于50
             array('>', 10),
             array('<=', 50)
         ), 
