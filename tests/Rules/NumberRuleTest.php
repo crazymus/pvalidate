@@ -60,4 +60,82 @@ final class NumberRuleTest extends PHPUnit_Framework_TestCase
         $vParams = \Crazymus\Pvalidate::validate($params, $rules);
         $this->assertEquals($vParams['age'], $params['age']);
     }
+
+    public function testOperator()
+    {
+        $params = array( 'age' => 10);
+        $rules = array(
+            'age' => array(
+                'type' => 'number',
+                'value' => 10,
+            )
+        );
+
+        $vParams = \Crazymus\Pvalidate::validate($params, $rules);
+        $this->assertEquals($vParams['age'], $params['age']);
+
+        $rules = array(
+            'age' => array(
+                'type' => 'number',
+                'value' => array('>', 9),
+            )
+        );
+        $vParams = \Crazymus\Pvalidate::validate($params, $rules);
+        $this->assertEquals($vParams['age'], $params['age']);
+
+
+        $rules = array(
+            'age' => array(
+                'type' => 'number',
+                'value' => array('>=', 10),
+            )
+        );
+        $vParams = \Crazymus\Pvalidate::validate($params, $rules);
+        $this->assertEquals($vParams['age'], $params['age']);
+
+
+        $rules = array(
+            'age' => array(
+                'type' => 'number',
+                'value' => array('<', 11),
+            )
+        );
+        $vParams = \Crazymus\Pvalidate::validate($params, $rules);
+        $this->assertEquals($vParams['age'], $params['age']);
+
+        $rules = array(
+            'age' => array(
+                'type' => 'number',
+                'value' => array('<=', 10),
+            )
+        );
+        $vParams = \Crazymus\Pvalidate::validate($params, $rules);
+        $this->assertEquals($vParams['age'], $params['age']);
+
+        $rules = array(
+            'age' => array(
+                'type' => 'number',
+                'value' => array(
+                    array('>', 9),
+                    array('<', 11)
+                ),
+            )
+        );
+        $vParams = \Crazymus\Pvalidate::validate($params, $rules);
+        $this->assertEquals($vParams['age'], $params['age']);
+    }
+
+    public function testOperatorNotPass()
+    {
+        $params = array( 'age' => 10);
+        $rules = array(
+            'age' => array(
+                'type' => 'number',
+                'value' => array('>', 11),
+            )
+        );
+
+        $this->setExpectedException('\Crazymus\PvalidateException');
+        \Crazymus\Pvalidate::validate($params, $rules);
+    }
 }
