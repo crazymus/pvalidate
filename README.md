@@ -2,7 +2,7 @@
     <img src="https://crazymus.oss-cn-beijing.aliyuncs.com/1111.png" style="width:500px;"/>
 </center>
 
-![Travis (.org)](https://img.shields.io/travis/crazymus/pvalidate.svg)
+[![Travis (.org)](https://img.shields.io/travis/crazymus/pvalidate.svg)](https://www.travis-ci.org/crazymus/pvalidate)
 [![GitHub](https://img.shields.io/github/license/crazymus/pvalidate.svg)](LICENSE)
 ![GitHub repo size](https://img.shields.io/github/repo-size/crazymus/pvalidate.svg)
 ![PHP from Packagist (specify version)](https://img.shields.io/packagist/php-v/crazymus/pvalidate/v2.0.svg)
