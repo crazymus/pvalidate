@@ -4,6 +4,7 @@
 
 [![GitHub](https://img.shields.io/github/license/crazymus/pvalidate.svg)](LICENSE)
 ![GitHub repo size](https://img.shields.io/github/repo-size/crazymus/pvalidate.svg)
+![PHP from Packagist (specify version)](https://img.shields.io/packagist/php-v/crazymus/pvalidate/v2.0.svg)
 
 数据校验是web开发中重要的环节，也是一项很繁琐的工作。为了提升效率，我想到开发一款通过简单的配置就能完成数据校验的工具，于是，Pvalidate诞生了.
 
