@@ -28,7 +28,7 @@ class IDCardRule extends StringRule
         $this->cityCode     = substr($this->idCard, 0, 4);
         $this->areasCode    = substr($this->idCard, 0, 6);
         if (!$this->checkFormat() || !$this->checkBirthday() || !$this->checkLastCode() || !$this->checkProvince()) {
-            throw new PvalidateException($this->renderErrorMsg('格式错误'));
+            throw new PvalidateException($this->renderErrorMsg('校验不通过'));
         }
     }
 
