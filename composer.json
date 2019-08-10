@@ -18,7 +18,7 @@
   "require": {
     "php": ">=5.3",
     "ext-mbstring": "*",
-    "ext-json": "*",
+    "ext-json": "*"
   },
   "autoload": {
     "psr-4": {"Crazymus\\": "src/"}
